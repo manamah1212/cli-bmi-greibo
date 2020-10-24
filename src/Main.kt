@@ -13,10 +13,23 @@ import common.Constants.SUCCESSFULLY_ADDED_TO_DB_MESSAGE
 import common.clearScreen
 import common.validateIfNotEmpty
 import common.validateUserInput
+import kotlin.reflect.jvm.internal.impl.types.checker.NewCapturedType
 import kotlin.system.exitProcess
 
-fun main(){
+val dataBase = arrayListOf<Client>()
 
+fun main(){
+val newUser = inputHandler()
+
+    //With provided data calculate age, BMI, and get BMI description
+
+    newUser.bmi = UserCalculations(newUser).getBMI()
+    newUser.age = UserCalculations(newUser).getAge()
+    newUser.bmiCategory = UserCalculations(newUser).getBMIDescription()
+
+    dataBase.add(newUser)
+
+    outputHandler(dataBase)
 }
 
 /**
